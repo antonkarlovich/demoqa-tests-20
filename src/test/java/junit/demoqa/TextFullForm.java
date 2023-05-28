@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -29,36 +30,36 @@ public class TextFullForm {
         $("#firstName").setValue("Антон");
         $("#lastName").setValue("Малов");
         $("#userEmail").setValue("sddgdfg@mail.ru");
-        $(".custom-control-label").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("8707123456");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(byText("October")).click();
-        $(".react-datepicker__year-select").click();
-        $(byText("1988")).click();
+        $("#dateOfBirth-wrapper").$("#dateOfBirthInput").click();
+        $("#dateOfBirth-wrapper").$(".react-datepicker__month-select").click();
+        $("#dateOfBirth-wrapper").$(byText("October")).click();
+        $("#dateOfBirth-wrapper").$(".react-datepicker__year-select").click();
+        $("#dateOfBirth-wrapper").$(byText("1988")).click();
         $(".react-datepicker__day--017").click();
         $("#subjectsInput").setValue("b");
         $(byText("Biology")).click();
-        $(byText("Reading")).click();
-        $(byText("Music")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
         $("#uploadPicture").uploadFile(new File(pathPng));
         $("#currentAddress").setValue("Череповегас");
-        $("#state").click();
-        $(byText("NCR")).click();
+        $("#stateCity-wrapper").$("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
         $(byText("Select City")).click();
         $(byText("Delhi")).click();
         $("#submit").click();
 
         $(byText(checkText)).shouldBe(Condition.visible);
-        $(byText("Антон Малов")).shouldBe(Condition.visible);
-        $(byText("sddgdfg@mail.ru")).shouldBe(Condition.visible);
-        $(byText("Male")).shouldBe(Condition.visible);
-        $(byText("8707123456")).shouldBe(Condition.visible);
-        $(byText("17 October,1988")).shouldBe(Condition.visible);
-        $(byText("Biology")).shouldBe(Condition.visible);
-        $(byText("Reading, Music")).shouldBe(Condition.visible);
-        $(byText("png-clipart-cats-cats.png")).shouldBe(Condition.visible);
-        $(byText("Череповегас")).shouldBe(Condition.visible);
-        $(byText("NCR Delhi")).shouldBe(Condition.visible);
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Антон Малов"));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("sddgdfg@mail.ru"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("8707123456"));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("17 October,1988"));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text("Biology"));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text("Reading, Music"));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("png-clipart-cats-cats.png"));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Череповегас"));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("NCR Delhi"));
     }
 }
