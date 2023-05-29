@@ -9,16 +9,16 @@ import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TextFullForm {
-    private final String URL = "https://demoqa.com/automation-practice-form";
+    private final String FORM_URL = "/automation-practice-form";
     private final String pathPng = "src\\test\\resources\\png-clipart-cats-cats.png";
     private final String checkText = "Thanks for submitting the form";
 
     @BeforeAll
     static void beforeAll() {
+        Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = true;
@@ -26,7 +26,11 @@ public class TextFullForm {
 
     @Test
     void checkForm() {
-        open(URL);
+        open(FORM_URL);
+
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         $("#firstName").setValue("Антон");
         $("#lastName").setValue("Малов");
         $("#userEmail").setValue("sddgdfg@mail.ru");
