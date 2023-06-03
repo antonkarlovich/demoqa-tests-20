@@ -1,60 +1,59 @@
 package junit.demoqa;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TextFullForm {
+public class RegistrationWithPageObjectsTest extends TestBase {
     private final String FORM_URL = "/automation-practice-form";
     private final String pathPng = "src\\test\\resources\\png-clipart-cats-cats.png";
     private final String checkText = "Thanks for submitting the form";
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
-    }
 
     @Test
     void checkForm() {
         open(FORM_URL);
-
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Антон");
         $("#lastName").setValue("Малов");
         $("#userEmail").setValue("sddgdfg@mail.ru");
+
         $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("8707123456");
+
         $("#dateOfBirth-wrapper").$("#dateOfBirthInput").click();
-        $("#dateOfBirth-wrapper").$(".react-datepicker__month-select").click();
-        $("#dateOfBirth-wrapper").$(byText("October")).click();
-        $("#dateOfBirth-wrapper").$(".react-datepicker__year-select").click();
-        $("#dateOfBirth-wrapper").$(byText("1988")).click();
-        $(".react-datepicker__day--017").click();
-        $("#subjectsInput").setValue("b");
-        $(byText("Biology")).click();
+        $("#dateOfBirth-wrapper").$(".react-datepicker__month-select").selectOption("October");
+        $("#dateOfBirth-wrapper").$(".react-datepicker__year-select").selectOption("1988");
+        $(".react-datepicker__day--017:not(.react-datepicker__day--outside-month)").click();
+
+
+        $("#subjectsInput").setValue("Biology").pressEnter();
+
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#hobbiesWrapper").$(byText("Music")).click();
+
         $("#uploadPicture").uploadFile(new File(pathPng));
+
         $("#currentAddress").setValue("Череповегас");
+
         $("#stateCity-wrapper").$("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $(byText("Select City")).click();
         $(byText("Delhi")).click();
         $("#submit").click();
 
-        $(byText(checkText)).shouldBe(Condition.visible);
+        $(".modal-dialog").should(appear);
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+
+
         $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Антон Малов"));
         $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("sddgdfg@mail.ru"));
         $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
