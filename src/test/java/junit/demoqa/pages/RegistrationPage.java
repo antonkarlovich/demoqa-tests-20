@@ -25,8 +25,8 @@ public class RegistrationPage {
             birthDayInput = $("#dateOfBirth-wrapper").$("#dateOfBirthInput"),
             addressInput = $("#currentAddress"),
             subjectsInput = $("#subjectsInput"),
-            hobbiesInput = $("#hobbiesWrapper"),
-            fileInput = $("#uploadPicture"),
+            hobbiesValue = $("#hobbiesWrapper"),
+            fileUpload = $("#uploadPicture"),
             stateSelect = $("#stateCity-wrapper").$("#state"),
             citySelect = $(byText("Select City")),
             submitButton = $("#submit"),
@@ -78,12 +78,12 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setHobbies(String value) {
-        hobbiesInput.$(byText(value)).click();
+        hobbiesValue.$(byText(value)).click();
         return this;
     }
 
     public RegistrationPage uploadFile(String value) {
-        fileInput.uploadFile(new File(value));
+        fileUpload.uploadFile(new File(value));
         return this;
     }
 
