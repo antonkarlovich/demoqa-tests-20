@@ -17,23 +17,21 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     TableResultComponent tableResultComponent = new TableResultComponent();
-    SelenideElement firstNameInput = $("#firstName");
-    SelenideElement lastNameInput = $("#lastName");
-    SelenideElement emailInput = $("#userEmail");
-    SelenideElement genderInput = $("#genterWrapper");
-    SelenideElement phoneNumberInput = $("#userNumber");
-    SelenideElement birthDayInput = $("#dateOfBirth-wrapper").$("#dateOfBirthInput");
-    SelenideElement addressInput = $("#currentAddress");
-    SelenideElement subjectsInput = $("#subjectsInput");
-    SelenideElement hobbiesInput = $("#hobbiesWrapper");
-    SelenideElement fileInput = $("#uploadPicture");
-    SelenideElement stateSelect = $("#stateCity-wrapper").$("#state");
-    SelenideElement citySelect = $(byText("Select City"));
-    SelenideElement submitButton = $("#submit");
-    SelenideElement modalDialog = $(".modal-dialog");
-    SelenideElement textInModalDialog = $("#example-modal-sizes-title-lg");
-
-
+    SelenideElement firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            emailInput = $("#userEmail"),
+            genderInput = $("#genterWrapper"),
+            phoneNumberInput = $("#userNumber"),
+            birthDayInput = $("#dateOfBirth-wrapper").$("#dateOfBirthInput"),
+            addressInput = $("#currentAddress"),
+            subjectsInput = $("#subjectsInput"),
+            hobbiesInput = $("#hobbiesWrapper"),
+            fileInput = $("#uploadPicture"),
+            stateSelect = $("#stateCity-wrapper").$("#state"),
+            citySelect = $(byText("Select City")),
+            submitButton = $("#submit"),
+            modalDialog = $(".modal-dialog"),
+            textInModalDialog = $("#example-modal-sizes-title-lg");
 
 
     public RegistrationPage openPage() {
