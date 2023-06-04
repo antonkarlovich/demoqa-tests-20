@@ -21,8 +21,7 @@ public class TextBoxPage {
 
     public TextBoxPage openPage() {
         open("/text-box");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        closeAdvertisementBanners();
         $("div.pattern-backgound").shouldHave(text("Text Box"));
         return this;
     }
@@ -57,5 +56,10 @@ public class TextBoxPage {
         resultEmail.shouldHave(text(email));
         resultCurrentAddress.shouldHave(text(currentAddress));
         resultPermanentAddress.shouldHave(text(permanentAddress));
+    }
+
+    private void closeAdvertisementBanners() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
     }
 }

@@ -20,7 +20,7 @@ public class RegistrationPage {
     SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
-            genderInput = $("#genterWrapper"),
+            genderValue = $("#genterWrapper"),
             phoneNumberInput = $("#userNumber"),
             birthDayInput = $("#dateOfBirth-wrapper").$("#dateOfBirthInput"),
             addressInput = $("#currentAddress"),
@@ -37,8 +37,7 @@ public class RegistrationPage {
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        closeAdvertisementBanners();
         return this;
     }
 
@@ -58,7 +57,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setGender(String value) {
-        genderInput.$(byText(value)).click();
+        genderValue.$(byText(value)).click();
         return this;
     }
 
@@ -119,5 +118,10 @@ public class RegistrationPage {
     public RegistrationPage verifyResult(String key, String value) {
         tableResultComponent.tableValueVerify(key, value);
         return this;
+    }
+
+    private void closeAdvertisementBanners() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
     }
 }
