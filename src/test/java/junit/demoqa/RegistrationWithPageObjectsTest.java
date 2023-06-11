@@ -32,7 +32,7 @@ public class RegistrationWithPageObjectsTest extends TestBase {
                         "," + testData.yearOfBirth)
                 .verifyResult("Subjects", testData.subject)
                 .verifyResult("Hobbies", testData.hobby)
-                .verifyResult("Picture", "png-clipart-cats-cats.png")
+                .verifyResult("Picture", testData.pathPng)
                 .verifyResult("Address", testData.address)
                 .verifyResult("State and City", testData.state + " " + testData.city);
    }
