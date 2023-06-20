@@ -13,8 +13,8 @@ public class SearchWithMethodSourceTest extends BaseTest {
 
     static Stream<Arguments> dataProvider() {
         return Stream.of(
-                Arguments.of("Телефоны", List.of("Электноника", "Смартфоны и гаджеты", "Мобильные телефоны")),
-                Arguments.of("Телевизоры", List.of("Электноника", "Телевизоры и аксесуары", "Телевизоры"))
+                Arguments.of("Телефоны", List.of("Электроника", "Смартфоны и гаджеты", "Мобильные телефоны")),
+                Arguments.of("Телевизоры", List.of("Электроника", "Телевизоры и аксессуары", "Телевизоры"))
         );
     }
 
