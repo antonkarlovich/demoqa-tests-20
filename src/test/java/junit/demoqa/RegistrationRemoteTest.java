@@ -1,5 +1,6 @@
 package junit.demoqa;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,8 @@ public class RegistrationRemoteTest extends RemoteTestBase {
 
     @Test
     @Tag("remote")
-    void checkForm() {
+    @DisplayName("Successful registration")
+    void successfulRegistrationTest() {
 
         registrationPage.openPage()
                 .setFirstName(testData.firstName)
