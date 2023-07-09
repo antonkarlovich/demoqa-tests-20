@@ -30,7 +30,6 @@ public class RegistrationRemoteTest extends RemoteTestBase {
                     .selectCity(testData.city)
                     .clickSubmit();
         });
-
         step("проверка результатов", () -> {
             registrationPage.checkVisibleTable()
                     .verifyResult("Student Name", testData.firstName + " " + testData.lastName)
