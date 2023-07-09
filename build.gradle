@@ -47,9 +47,6 @@ tasks.withType(Test) {
     }
 }
 
-test {
-    useJUnitPlatform()
-}
 
 task remote_test(type: Test) {
     useJUnitPlatform{
@@ -60,5 +57,11 @@ task remote_test(type: Test) {
 task property_test(type: Test) {
     useJUnitPlatform{
         includeTags("property")
+    }
+}
+
+task fillForm_test(type: Test) {
+    useJUnitPlatform{
+        includeTags("fillForm")
     }
 }

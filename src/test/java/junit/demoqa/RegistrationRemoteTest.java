@@ -10,7 +10,7 @@ import static io.qameta.allure.Allure.step;
 public class RegistrationRemoteTest extends RemoteTestBase {
 
     @Test
-    @Tag("remote")
+    @Tag("fillForm")
     @DisplayName("Successful registration")
     void successfulRegistrationTest() {
 
